@@ -8,9 +8,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@carbon/charts": "^0.54.12",
+    "@carbon/charts-react": "^0.54.12",
+    "@carbon/icons-react": "^10.45.0",
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/react": "11",
+    "@emotion/styled": "11",
+    "@fontsource/manrope": "^4.5.4",
+    "carbon-components": "^10.52.0",
+    "carbon-components-react": "^7.52.0",
+    "carbon-icons": "^7.0.7",
+    "d3": "^7.3.0",
+    "framer-motion": "6",
     "next": "12.0.10",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sequelize": "^6.16.1",
+    "swr": "^1.2.1"
   },
   "devDependencies": {
     "eslint": "8.8.0",

@@ -1,0 +1,409 @@
+{
+  "pages": [
+    {
+      "title": "Real-time transactions",
+      "category": "transactions",
+      "slug": "real-time",
+      "charts": [
+        {
+          "type": "BubbleChart",
+          "realTime": true,
+          "dataMapping": {
+            "group": "receiver_account_id",
+            "receiver_account_id": "receiver_account_id",
+            "block_timestamp": "block_timestamp",
+            "receipt_conversion_gas_burnt": "receipt_conversion_gas_burnt"
+          },
+          "options": {
+            "axes": {
+              "bottom": {
+                "title": "Block timestamp",
+                "scaleType": "labels",
+                "mapsTo": "block_timestamp"
+              },
+              "left": {
+                "scaleType": "labels",
+                "title": "Reciever account",
+                "mapsTo": "receiver_account_id"
+              }
+            },
+            "bubble": {
+              "radiusMapsTo": "receipt_conversion_gas_burnt",
+              "radiusLabel": "Gas burnt for receipt conversion"
+            }
+          },
+          "query": "real-time-receivers-tx-count"
+        }
+      ]
+    },
+    {
+      "title": "Top transaction types",
+      "category": "transactions",
+      "slug": "top-types",
+      "charts": [
+        {
+          "type": "DonutChart",
+          "dataMapping": {
+            "group": "action_kind",
+            "value": "count"
+          },
+          "options": {
+            "resizable": true,
+            "legend": {
+              "alignment": "center"
+            },
+            "donut": {
+              "center": {
+                "label": "Receipts"
+              },
+              "alignment": "center"
+            }
+          },
+          "query": "top-types-receipt-count"
+        }
+      ]
+    },
+    {
+      "title": "Transaction frequency by hour",
+      "category": "transactions",
+      "slug": "frequency-hour",
+      "charts": [
+        {
+          "type": "HeatmapChart",
+          "dataMapping": {
+            "day": "day",
+            "hour": "hour",
+            "value": "count"
+          },
+          "blankData": { "hour": "0", "day": "0", "value": 0 },
+          "options": {
+            "axes": {
+              "bottom": {
+                "title": "Hour",
+                "mapsTo": "hour",
+                "scaleType": "labels"
+              },
+              "left": {
+                "title": "Day",
+                "mapsTo": "day",
+                "scaleType": "labels"
+              }
+            },
+            "heatmap": {
+              "colorLegend": {
+                "title": "Transaction count",
+                "type": "quantize"
+              }
+            },
+            "experimental": true
+          },
+          "query": "tx-frequency-hour"
+        }
+      ]
+    },
+    {
+      "title": "Top sender accounts by transaction count",
+      "category": "accounts",
+      "slug": "top-senders-tx-count",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "predecessor_account_id",
+            "value": "count",
+            "group": "predecessor_account_id"
+          },
+          "query": "top-senders-tx-count"
+        }
+      ]
+    },
+    {
+      "title": "Top receiver accounts by transaction count",
+      "category": "accounts",
+      "slug": "top-receivers-tx-count",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "receiver_account_id",
+            "value": "count",
+            "group": "receiver_account_id"
+          },
+          "query": "top-receivers-tx-count"
+        }
+      ]
+    },
+    {
+      "title": "Real-time account creations",
+      "category": "accounts",
+      "slug": "real-time-creations",
+      "charts": [
+        {
+          "type": "BubbleChart",
+          "realTime": true,
+          "dataMapping": {
+            "group": "group",
+            "block_timestamp": "block_timestamp"
+          },
+          "options": {
+            "axes": {
+              "bottom": {
+                "title": "Block timestamp",
+                "scaleType": "labels",
+                "mapsTo": "block_timestamp"
+              },
+              "left": {
+                "scaleType": "labels",
+                "title": "Account ID",
+                "mapsTo": "group"
+              }
+            },
+            "bubble": {
+              "radiusMapsTo": "size"
+            }
+          },
+          "query": "real-time-account-creations"
+        }
+      ]
+    },
+    {
+      "title": "Real-time account deletions",
+      "category": "accounts",
+      "slug": "real-time-deletions",
+      "charts": [
+        {
+          "type": "BubbleChart",
+          "realTime": true,
+          "dataMapping": {
+            "group": "group",
+            "block_timestamp": "block_timestamp"
+          },
+          "options": {
+            "axes": {
+              "bottom": {
+                "title": "Block timestamp",
+                "scaleType": "labels",
+                "mapsTo": "block_timestamp"
+              },
+              "left": {
+                "scaleType": "labels",
+                "title": "Account ID",
+                "mapsTo": "group"
+              }
+            },
+            "bubble": {
+              "radiusMapsTo": "size"
+            }
+          },
+          "query": "real-time-account-deletions"
+        }
+      ]
+    },
+    {
+      "title": "Top account creation funders",
+      "category": "accounts",
+      "slug": "top-funders",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "receipt_predecessor_account_id",
+            "value": "count",
+            "group": "receipt_predecessor_account_id"
+          },
+          "query": "top-funders-receipt-count"
+        }
+      ]
+    },
+    {
+      "title": "Top NFT collections by transfer count",
+      "category": "non-fungible-tokens",
+      "slug": "top-collections-transfer-count",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "emitted_by_contract_account_id",
+            "value": "count"
+          },
+          "query": "top-nft-collections-transfer-count"
+        }
+      ]
+    },
+    {
+      "title": "Top NFT collections by mint count",
+      "category": "non-fungible-tokens",
+      "slug": "top-collections-mint-count",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "emitted_by_contract_account_id",
+            "value": "count"
+          },
+          "query": "top-nft-collections-mint-count"
+        }
+      ]
+    },
+    {
+      "title": "Top NFT collections by burn count",
+      "category": "non-fungible-tokens",
+      "slug": "top-collections-burn-count",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "emitted_by_contract_account_id",
+            "value": "count"
+          },
+          "query": "top-nft-collections-burn-count"
+        }
+      ]
+    },
+    {
+      "title": "Top individual NFTs by transfer count",
+      "category": "non-fungible-tokens",
+      "slug": "top-individual-transfer-count",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "name",
+            "value": "count"
+          },
+          "query": "top-individual-nft-transfer-count"
+        }
+      ]
+    },
+    {
+      "title": "Real-time NFT mints",
+      "category": "non-fungible-tokens",
+      "slug": "real-time-mints",
+      "charts": [
+        {
+          "type": "BubbleChart",
+          "realTime": true,
+          "dataMapping": {
+            "group": "group",
+            "block_timestamp": "block_timestamp"
+          },
+          "options": {
+            "axes": {
+              "bottom": {
+                "title": "Block timestamp",
+                "scaleType": "labels",
+                "mapsTo": "block_timestamp"
+              },
+              "left": {
+                "scaleType": "labels",
+                "title": "Name",
+                "mapsTo": "group"
+              }
+            }
+          },
+          "query": "real-time-nft-mints"
+        }
+      ]
+    },
+    {
+      "title": "Real-time NFT burns",
+      "category": "non-fungible-tokens",
+      "slug": "real-time-burns",
+      "charts": [
+        {
+          "type": "BubbleChart",
+          "realTime": true,
+          "dataMapping": {
+            "group": "group",
+            "block_timestamp": "block_timestamp"
+          },
+          "options": {
+            "axes": {
+              "bottom": {
+                "title": "Block timestamp",
+                "scaleType": "labels",
+                "mapsTo": "block_timestamp"
+              },
+              "left": {
+                "scaleType": "labels",
+                "title": "Name",
+                "mapsTo": "group"
+              }
+            }
+          },
+          "query": "real-time-nft-burns"
+        }
+      ]
+    },
+    {
+      "title": "Real-time NFT transfers",
+      "category": "non-fungible-tokens",
+      "slug": "real-time-transfers",
+      "charts": [
+        {
+          "type": "BubbleChart",
+          "realTime": true,
+          "dataMapping": {
+            "group": "group",
+            "block_timestamp": "block_timestamp"
+          },
+          "options": {
+            "axes": {
+              "bottom": {
+                "title": "Block timestamp",
+                "scaleType": "labels",
+                "mapsTo": "block_timestamp"
+              },
+              "left": {
+                "scaleType": "labels",
+                "title": "Name",
+                "mapsTo": "group"
+              }
+            }
+          },
+          "query": "real-time-nft-transfers"
+        }
+      ]
+    }
+  ],
+  "dynamic": [
+    {
+      "title": "Account",
+      "category": "account",
+      "slug": "[accountId]",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "receiver_account_id",
+            "value": "count",
+            "group": "receiver_account_id"
+          },
+          "query": "[accountId]"
+        }
+      ]
+    },
+    {
+      "title": "Transaction",
+      "category": "transaction",
+      "slug": "[hash]",
+      "charts": [
+        {
+          "type": "TreemapChart",
+          "dataMapping": {
+            "name": "receipt_id",
+            "value": "gas_burnt",
+            "group": "receipt_id"
+          },
+          "query": "[hash]"
+        }
+      ]
+    }
+  ],
+  "defaults": {
+    "after": null,
+    "last": "1 hour",
+    "limit": 10,
+    "account": "aurora"
+  }
+}
