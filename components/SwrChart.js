@@ -1,8 +1,10 @@
 import dynamic from "next/dynamic";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const SwrChart = (props) => {
+  const { mutate } = useSWRConfig();
+
   console.log("chart props is " + JSON.stringify(props));
 
   const DynamicComponent = dynamic(() =>
@@ -18,7 +20,23 @@ const SwrChart = (props) => {
     fetcher
   );
 
-  if (error) return <div>failed to load</div>;
+  if (error) {
+    mutate("/api/" + props.query + dynamicParams);
+    return (
+      <DynamicComponent
+        data={[props.blankData || { value: 0, group: "", name: "" }]}
+        options={
+          ({
+            data: {
+              loading: true,
+            },
+            height: "90vh",
+          },
+          { ...props.options })
+        }
+      />
+    );
+  }
   if (!data)
     return (
       <DynamicComponent
