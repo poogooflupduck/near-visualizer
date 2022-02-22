@@ -6,6 +6,8 @@ The visual blockchain explorer for NEAR
 
 A submission for the NEAR Metabuid Hackathon
 
+Intro video: https://youtu.be/bY10WJpSvAw
+
 ## Intro
 
 NEAR is a fast, scalable, carbon-neutral blockchain. With sharding, NEAR is capable of processing in the order of hundreds of thousands of transactions per second.
@@ -26,6 +28,9 @@ NEAR Visualizer uses:
 - Blockchain data from the [NEAR indexer](https://github.com/near/near-indexer-for-explorer/)
 - Industry-standard charts and UI via [IBM's Carbon Design Framework](https://www.carbondesignsystem.com/), by using the [Carbon Components](https://github.com/carbon-design-system/carbon/tree/main/packages/react) & [Carbon Charts](https://github.com/carbon-design-system/carbon-charts/tree/master/packages/react) React packages
 - A responsive, custom-built UI on both mobile and desktop
+
+![image](https://user-images.githubusercontent.com/30199031/155184751-ca6cca63-658a-43dc-8e49-cd320a5aec17.png)
+
 
 ## Add new visualizations
 
