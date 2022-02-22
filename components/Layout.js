@@ -11,10 +11,27 @@ import {
 } from "carbon-components-react";
 import { Box, Center } from "@chakra-ui/react";
 import Logo from "@/components/Logo";
+import { useRouter } from "next/router";
 
 import config from "../config.json";
 
 const Layout = ({ sidebar, children, ...props }) => {
+  const router = useRouter();
+
+  const searchSubmit = (e) => {
+    e.preventDefault(); // don't redirect the page
+    const accountIdRegExp =
+      /^(([a-z\d]+[\-_])*[a-z\d]+\.)*([a-z\d]+[\-_])*[a-z\d]+$/;
+
+    if (
+      accountIdRegExp.test(e.target.search.value) &&
+      e.target.search.value.toLowerCase().includes(".near")
+    ) {
+      router.push("/account/" + e.target.search.value);
+    } else {
+      router.push("/transaction/" + e.target.search.value);
+    }
+  };
   return (
     <>
       <Head>
@@ -30,10 +47,13 @@ const Layout = ({ sidebar, children, ...props }) => {
               <Logo />
             </Box>
 
-            <Search
-              id="search-1"
-              placeHolderText="Search by account ID or tx hash"
-            />
+            <form onSubmit={(e) => searchSubmit(e)}>
+              <Search
+                name="search"
+                id="search-1"
+                placeholder="Search by account ID or tx hash"
+              />
+            </form>
             <SideNavItems>
               {[...new Set(config["pages"].map((entry) => entry.category))].map(
                 (category) => (

@@ -1,8 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NEAR Visualizer
 
-## Getting Started
+### Live Demo: https://near-visualizer.vercel.app/
 
-First, run the development server:
+## Technologies
+
+NEAR Visualizer uses:
+
+- The most up-to-date data via SWR and Server-side rendering [Next.js](https://nextjs.org/)
+- Blockchain data from the [NEAR indexer](https://github.com/near/near-indexer-for-explorer/)
+- Industry-standard charts and UI via [IBM's Carbon Design Framework](https://www.carbondesignsystem.com/), by using the [Carbon Components](https://github.com/carbon-design-system/carbon/tree/main/packages/react) & [Carbon Charts](https://github.com/carbon-design-system/carbon-charts/tree/master/packages/react) React packages
+- A responsive, custom-built UI on both mobile and desktop
+
+## Add new visualizations
+
+- Add a data query to queries.js
+- Add the visualization settings and reference the query in config.json
+
+## Local development
+
+Clone, run `yarn install` or `npm install` and then start the development server:
 
 ```bash
 npm run dev
@@ -12,23 +28,10 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Deploy
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The easiest way to deploy NEAR visualizer is via Vercel.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+https://github.com/karlxlee/near-visualizer
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://near-visualizer.vercel.app/
