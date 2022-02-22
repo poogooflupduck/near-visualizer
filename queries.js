@@ -28,7 +28,10 @@ const q = {
     GROUP BY DAY, HOUR
     LIMIT $2
     `,
-    ["last", "limit"],
+    [
+      ["last", "48 hours"],
+      ["limit", 48],
+    ],
   ],
   "top-receivers-tx-count": [
     `
@@ -71,7 +74,10 @@ const q = {
     ORDER BY COUNT DESC 
     LIMIT $2
     `,
-    ["last", "limit"],
+    [
+      ["last", "7 days"],
+      ["limit", 100],
+    ],
   ],
   "real-time-account-creations": [
     `
@@ -276,3 +282,10 @@ const q = {
 };
 
 export default q;
+
+export const defaults = {
+  after: null,
+  last: "1 hour",
+  limit: 10,
+  account: "aurora",
+};

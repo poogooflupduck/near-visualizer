@@ -1,6 +1,4 @@
-import queries from "../../queries";
-import config from "../../config.json";
-
+import queries, { defaults } from "../../queries";
 import { query } from "@/utils/indexer";
 
 export default async function handler(req, res) {
@@ -9,16 +7,18 @@ export default async function handler(req, res) {
   let paramsRecord = [];
   console.log("api query obj is");
   console.log(req.query);
-  for (let parameterName of q[1]) {
-    console.log(parameterName);
-    if (parameterName in req.query && req.query[parameterName]) {
-      checkedParameters.push(req.query[parameterName]);
-      paramsRecord.push(parameterName + ": " + req.query[parameterName]);
+  for (let parameterEntry of q[1]) {
+    if (parameterEntry.length == 2) {
+      let parameterName = parameterEntry[0];
+      let localDefault = parameterEntry[1];
+      checkedParameters.push(localDefault);
+      paramsRecord.push(parameterName + ": " + localDefault);
+    } else if (parameterEntry in req.query && req.query[parameterEntry]) {
+      checkedParameters.push(req.query[parameterEntry]);
+      paramsRecord.push(parameterEntry + ": " + req.query[parameterEntry]);
     } else {
-      checkedParameters.push(config["defaults"][parameterName]);
-      paramsRecord.push(
-        parameterName + ": " + config["defaults"][parameterName]
-      );
+      checkedParameters.push(defaults[parameterEntry]);
+      paramsRecord.push(parameterEntry + ": " + defaults[parameterEntry]);
     }
   }
   const { rows } = await query(q[0], checkedParameters);

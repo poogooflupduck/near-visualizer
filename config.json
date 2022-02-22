@@ -399,11 +399,5 @@
         }
       ]
     }
-  ],
-  "defaults": {
-    "after": null,
-    "last": "1 hour",
-    "limit": 10,
-    "account": "aurora"
-  }
+  ]
 }
