@@ -5,14 +5,7 @@ import config from "../../config.json";
 
 export default function Slug(props) {
   return (
-    <Layout
-      title={
-        props.category.charAt(0).toUpperCase() +
-        props.category.slice(1) +
-        " / " +
-        props.slug
-      }
-    >
+    <Layout title={props.title}>
       {props.chart.realTime ? (
         <RealTimeSwrChart {...props.chart} />
       ) : (
@@ -48,8 +41,17 @@ export function getServerSideProps({ params }) {
     chart["dynamicValue"] = params.slug;
   }
 
+  let title =
+    params.category.charAt(0).toUpperCase() +
+    params.category.slice(1) +
+    " / " +
+    params.slug;
+
+  chart["title"] = title;
+
   return {
     props: {
+      title,
       chart,
       category: params.category,
       slug: params.slug,

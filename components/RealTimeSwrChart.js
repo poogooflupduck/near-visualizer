@@ -44,22 +44,7 @@ const RealTimeSwrChart = (props) => {
   );
 
   if (error) return <div>failed to load</div>;
-  if (!data)
-    return (
-      <></>
-      //   <DynamicComponent
-      //     data={[props.blankData || { value: 0, group: "", name: "" }]}
-      //     options={
-      //       ({
-      //         data: {
-      //           loading: true,
-      //         },
-      //         height: "90vh",
-      //       },
-      //       { ...props.options })
-      //     }
-      //   />
-    );
+  if (!data) return <></>;
 
   const allTx = data ? data.map((dataPage) => dataPage.data).flat() : [];
   console.log(allTx);
@@ -82,12 +67,11 @@ const RealTimeSwrChart = (props) => {
             })
           : allTx
       }
-      options={
-        ({
-          height: "90vh",
-        },
-        { ...props.options })
-      }
+      options={{
+        title: props.title ? props.title : "",
+        height: "90vh",
+        ...props.options,
+      }}
     />
   );
 };

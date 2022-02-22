@@ -3,6 +3,7 @@ import useSWR, { useSWRConfig } from "swr";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const SwrChart = (props) => {
+  console.log(props);
   const { mutate } = useSWRConfig();
 
   console.log("chart props is " + JSON.stringify(props));
@@ -68,26 +69,13 @@ const SwrChart = (props) => {
             })
           : data.data
       }
-      options={
-        ({
-          // axes: {
-          //   left: {
-          //     title: "2019 Annual Sales Figures",
-          //     scaleType: "labels",
-          //     mapsTo: "group",
-          //   },
-          //   bottom: {
-          //     mapsTo: "count",
-          //     domain: [0, Math.max(...data.data.map((entry) => entry.count))],
-          //   },
-          // },
-          // points: {
-          //   // radius: 7,
-          // },
-          height: "90vh",
-        },
-        { ...props.options })
-      }
+      options={{
+        title: props.title
+          ? props.title + " (" + data.params.join(", ") + ")"
+          : "",
+        height: "90vh",
+        ...props.options,
+      }}
     />
   );
 };
