@@ -4,9 +4,15 @@ import RealTimeSwrChart from "@/components/RealTimeSwrChart";
 import config from "../../config.json";
 
 export default function Slug(props) {
-  console.log(props);
   return (
-    <Layout>
+    <Layout
+      title={
+        props.category.charAt(0).toUpperCase() +
+        props.category.slice(1) +
+        " / " +
+        props.slug
+      }
+    >
       {props.chart.realTime ? (
         <RealTimeSwrChart {...props.chart} />
       ) : (

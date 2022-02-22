@@ -8,6 +8,7 @@ import {
   SideNavMenuItem,
   SideNavLink,
   SideNavMenu,
+  SideNav,
 } from "carbon-components-react";
 import { Box, Center } from "@chakra-ui/react";
 import Logo from "@/components/Logo";
@@ -17,6 +18,7 @@ import config from "../config.json";
 
 const Layout = ({ sidebar, children, ...props }) => {
   const router = useRouter();
+  console.log(router.asPath);
 
   const searchSubmit = (e) => {
     e.preventDefault(); // don't redirect the page
@@ -35,7 +37,9 @@ const Layout = ({ sidebar, children, ...props }) => {
   return (
     <>
       <Head>
-        <title>{props.title ? props.title : "NEAR Visualizer"}</title>
+        <title>
+          {props.title ? props.title + " - NEAR Visualizer" : "NEAR Visualizer"}
+        </title>
         <meta name="description" content={props.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -60,6 +64,7 @@ const Layout = ({ sidebar, children, ...props }) => {
                   <SideNavMenu
                     title={category.charAt(0).toUpperCase() + category.slice(1)}
                     key={category}
+                    defaultExpanded={true}
                   >
                     {config["pages"]
                       .filter((entry) => entry.category == category)
@@ -67,6 +72,11 @@ const Layout = ({ sidebar, children, ...props }) => {
                         <SideNavMenuItem
                           href={"/" + category + "/" + page.slug}
                           key={page.slug}
+                          isActive={
+                            router.asPath == "/" + category + "/" + page.slug
+                              ? true
+                              : false
+                          }
                         >
                           {page.title}
                         </SideNavMenuItem>
