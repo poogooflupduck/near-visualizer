@@ -2,6 +2,22 @@
 
 ### Live Demo: https://near-visualizer.vercel.app/
 
+The visual blockchain explorer for NEAR
+
+A submission for the NEAR Metabuid Hackathon
+
+## Intro
+
+NEAR is a fast, scalable, carbon-neutral blockchain. With sharding, NEAR is capable of processing in the order of hundreds of thousands of transactions per second.
+
+- How can developers, teams, and DAOs sort through millions of transactions to find trends and patterns?
+
+- How can we understand NEAR data in context to create new features, Dapps or governance proposals?
+
+With NEAR Visualizer, **you can understand key trends with just a glance.**
+
+You can also explore your own account ID and any transactions on NEAR visually.
+
 ## Technologies
 
 NEAR Visualizer uses:
@@ -13,8 +29,12 @@ NEAR Visualizer uses:
 
 ## Add new visualizations
 
-- Add a data query to queries.js
-- Add the visualization settings and reference the query in config.json
+NEAR visualizer is designed so that anyone can clone and adapt it to their needs with minimal effort. In fact, you can add a new visualization by modifying two main files, without touching the front-end code.
+
+- Add a data query to `queries.js`
+- Add the visualization settings and reference the query in `config.json`
+
+The new page will automatically popup on the side-nav.
 
 ## Local development
 
@@ -30,7 +50,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deploy
 
-The easiest way to deploy NEAR visualizer is via Vercel.
+The easiest way to deploy NEAR visualizer is via Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkarlxlee%2Fnear-visualizer)
 
 https://github.com/karlxlee/near-visualizer
 
