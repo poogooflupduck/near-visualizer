@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import useSWR, { useSWRConfig } from "swr";
+import AreaSkeletonChart from "@/components/AreaSkeletonChart";
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const SwrChart = (props) => {
@@ -39,7 +40,9 @@ const SwrChart = (props) => {
     );
   }
   if (!data)
-    return (
+    return props.neutralSkeleton ? (
+      <AreaSkeletonChart />
+    ) : (
       <DynamicComponent
         data={[props.blankData || { value: 0, group: "", name: "" }]}
         options={
@@ -53,31 +56,32 @@ const SwrChart = (props) => {
         }
       />
     );
-  data && console.log(data);
-  return (
-    <DynamicComponent
-      data={
-        props.dataMapping
-          ? data.data.map((entry) => {
-              Object.keys(props.dataMapping).map(
-                (key) => (entry[key] = entry[props.dataMapping[key]])
-              );
-              console.log(entry);
-              return {
-                ...entry,
-              };
-            })
-          : data.data
-      }
-      options={{
-        title: props.title
-          ? props.title + " (" + data.params.join(", ") + ")"
-          : "",
-        height: "90vh",
-        ...props.options,
-      }}
-    />
-  );
+  if (data) {
+    return (
+      <DynamicComponent
+        data={
+          props.dataMapping
+            ? data.data.map((entry) => {
+                Object.keys(props.dataMapping).map(
+                  (key) => (entry[key] = entry[props.dataMapping[key]])
+                );
+                console.log(entry);
+                return {
+                  ...entry,
+                };
+              })
+            : data.data
+        }
+        options={{
+          title: props.title
+            ? props.title + " (" + data.params.join(", ") + ")"
+            : "",
+          height: "90vh",
+          ...props.options,
+        }}
+      />
+    );
+  }
 };
 
 export default SwrChart;

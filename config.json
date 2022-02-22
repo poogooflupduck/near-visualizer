@@ -75,7 +75,7 @@
             "hour": "hour",
             "value": "count"
           },
-          "blankData": { "hour": "0", "day": "0", "value": 0 },
+          "neutralSkeleton": true,
           "options": {
             "axes": {
               "bottom": {

@@ -28,10 +28,7 @@ const q = {
     GROUP BY DAY, HOUR
     LIMIT $2
     `,
-    [
-      ["last", "48 hours"],
-      ["limit", 48],
-    ],
+    [["last", "6 hours"], ["limit"]],
   ],
   "top-receivers-tx-count": [
     `
