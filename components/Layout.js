@@ -10,7 +10,7 @@ import {
   SideNavMenu,
   SideNav,
 } from "carbon-components-react";
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Show, Hide } from "@chakra-ui/react";
 import Logo from "@/components/Logo";
 import { useRouter } from "next/router";
 
@@ -58,9 +58,40 @@ const Layout = ({ sidebar, children, ...props }) => {
                 placeholder="Search by account ID or tx hash"
               />
             </form>
-            <SideNavItems>
-              {[...new Set(config["pages"].map((entry) => entry.category))].map(
-                (category) => (
+            <Show below="lg">
+              <SideNavItems>
+                {[
+                  ...new Set(config["pages"].map((entry) => entry.category)),
+                ].map((category) => (
+                  <SideNavMenu
+                    title={category.charAt(0).toUpperCase() + category.slice(1)}
+                    key={category}
+                    defaultExpanded={false}
+                  >
+                    {config["pages"]
+                      .filter((entry) => entry.category == category)
+                      .map((page) => (
+                        <SideNavMenuItem
+                          href={"/" + category + "/" + page.slug}
+                          key={page.slug}
+                          isActive={
+                            router.asPath == "/" + category + "/" + page.slug
+                              ? true
+                              : false
+                          }
+                        >
+                          {page.title}
+                        </SideNavMenuItem>
+                      ))}
+                  </SideNavMenu>
+                ))}
+              </SideNavItems>
+            </Show>
+            <Show above="lg">
+              <SideNavItems>
+                {[
+                  ...new Set(config["pages"].map((entry) => entry.category)),
+                ].map((category) => (
                   <SideNavMenu
                     title={category.charAt(0).toUpperCase() + category.slice(1)}
                     key={category}
@@ -82,9 +113,9 @@ const Layout = ({ sidebar, children, ...props }) => {
                         </SideNavMenuItem>
                       ))}
                   </SideNavMenu>
-                )
-              )}
-            </SideNavItems>
+                ))}
+              </SideNavItems>
+            </Show>
             {sidebar}
           </Column>
           <Column sm={12} md={12} lg={9}>
