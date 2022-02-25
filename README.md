@@ -62,3 +62,11 @@ The easiest way to deploy NEAR visualizer is via Vercel:
 https://github.com/karlxlee/near-visualizer
 
 https://near-visualizer.vercel.app/
+
+## Explore other projects:
+- https://devpost.com/karlxlee
+- https://gitcoin.co/karlxlee
+
+Previous hackathon wins:
+- https://github.com/karlxlee/lunatic-score-calculator
+- https://github.com/karlxlee/make-crypto-mobile-hackathon/tree/project/optics_dashboard
